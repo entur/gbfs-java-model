@@ -1,10 +1,9 @@
 # gbfs-java-model
 
-Downloads gbfs-json-schema from https://github.com/MobilityData/gbfs-json-schema and generates
-Java model using jsonschema2pojo with jackson2 annotations.
+Generates Java model from GBFS json schema using jsonschema2pojo with jackson2 annotations.
 
 In order to avoid naming conflicts in generated classes, each feed gets its own package, and all
-classes are prefixed with "GBFS". Note: This prefix should be reconsidered.
+classes are prefixed with "GBFS".
 
 Packages include GBFS versions to accommodate for future releases which may include older versions,
 since some consumers may need to handle multiple non-compatible versions in the same application 
@@ -21,3 +20,7 @@ The generated Gbfs class is therefore extended by
 [src/main/org/entur/gbfs/v2_2/gbfs/GBFS.java](src/main/org/entur/gbfs/v2_2/gbfs/GBFS.java)
 to override the `data` property with a Map implementation. This extended class should be used
 when unmarshalling the `gbfs.json` feed.
+
+## Maven central
+This project is available in the central maven repository.
+See https://search.maven.org/search?q=g:org.entur.gbfs
