@@ -181,6 +181,8 @@
                     </formatTypeMapping>
                     <removeOldOutput>true</removeOldOutput>
                     <serializable>true</serializable>
+                    <initializeCollections>false</initializeCollections>
+                    <generateBuilders>true</generateBuilders>
                     <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
                     <targetPackage>org.entur.gbfs</targetPackage>
                 </configuration>
