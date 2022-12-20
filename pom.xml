@@ -4,7 +4,7 @@
 
     <groupId>org.entur.gbfs</groupId>
     <artifactId>gbfs-java-model</artifactId>
-    <version>2.3.3-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
 
     <name>gbfs-java-model</name>
     <description>Generates Java model from GBFS JSON schema using jsonschema2pojo.</description>
@@ -86,6 +86,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-databind.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.grundid.opendatalab</groupId>
+            <artifactId>geojson-jackson</artifactId>
+            <version>1.14</version>
         </dependency>
 
         <!-- Test dependencies -->
@@ -174,6 +180,15 @@
                 <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
                 <version>${jsonschema2pojo-maven-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.entur.gbfs</groupId>
+                        <artifactId>rule-factory</artifactId>
+                        <version>1.0.0</version>
+                        <scope>system</scope>
+                        <systemPath>${project.basedir}/rule-factory/target/rule-factory-1.0.0.jar</systemPath>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <id>generate-v2.2-sources</id>
@@ -191,6 +206,7 @@
                             <generateBuilders>true</generateBuilders>
                             <sourceDirectory>${basedir}/src/main/resources/schema/v2.2</sourceDirectory>
                             <targetPackage>org.entur.gbfs.v2_2</targetPackage>
+                            <customRuleFactory>org.entur.gbfs.GeofencingRuleFactory</customRuleFactory>
                         </configuration>
                     </execution>
                     <execution>
@@ -209,6 +225,7 @@
                             <generateBuilders>true</generateBuilders>
                             <sourceDirectory>${basedir}/src/main/resources/schema/v2.3</sourceDirectory>
                             <targetPackage>org.entur.gbfs.v2_3</targetPackage>
+                            <customRuleFactory>org.entur.gbfs.GeofencingRuleFactory</customRuleFactory>
                         </configuration>
                     </execution>
                 </executions>
