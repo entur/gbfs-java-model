@@ -1,22 +1,15 @@
 package org.entur.gbfs.v2_2.geofencing_zones;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.entur.gbfs.TestBase;
 import org.geojson.LngLatAlt;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.net.URL;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GeofencingZonesTest {
-    private static final ObjectMapper objectMapper = new ObjectMapper();
-
+class GeofencingZonesTest extends TestBase {
     @Test
-    public void testUnmarshal() throws IOException {
-        URL resource = getClass().getClassLoader().getResource("geofencing_zones.json");
-        GBFSGeofencingZones zones = objectMapper.readValue(resource, GBFSGeofencingZones.class);
-
+    void testUnmarshal() {
+        GBFSGeofencingZones zones = assertUnmarshalDoesNotThrow("v2_X/geofencing_zones.json", GBFSGeofencingZones.class);
         GBFSFeature feature = zones.getData().getGeofencingZones().getFeatures().get(0);
 
         LngLatAlt coord = feature.getGeometry().getCoordinates().get(0).get(0).get(0);

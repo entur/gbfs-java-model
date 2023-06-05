@@ -1,18 +1,11 @@
 package org.entur.gbfs.v2_2.gbfs;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.entur.gbfs.TestBase;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.net.URL;
-
-public class GBFSTest {
-
-    private static final ObjectMapper objectMapper = new ObjectMapper();
-
+class GBFSTest extends TestBase {
     @Test
-    public void testUnmarshal() throws IOException {
-        URL resource = getClass().getClassLoader().getResource("gbfs.json");
-        objectMapper.readValue(resource, GBFS.class);
+    void testUnmarshal() {
+        assertUnmarshalDoesNotThrow("v2_X/gbfs.json", GBFS.class);
     }
 }
