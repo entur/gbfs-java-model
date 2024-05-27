@@ -1,4 +1,12 @@
-# gbfs-java-model
+# gbfs-java-model (deprecated)
+
+## RELOCATION NOTICE 
+
+This package has been relocated to https://github.com/MobilityData/gbfs-json-schema/tree/master/models/java
+
+In maven you will find the package under org.mobilitydata.gbfs-java-model from version 1.0.6.
+
+## END RELOCATION NOTICE
 
 Generates Java model from GBFS json schema using jsonschema2pojo with jackson2 annotations.
 

@@ -40,6 +40,10 @@
             <name>entur2-snapshots</name>
             <url>https://entur2.jfrog.io/entur2/libs-snapshot-local</url>
         </snapshotRepository>
+        <relocation>
+            <groupId>org.mobilitydata</groupId>
+            <version>1.0.6</version>
+        </relocation>
     </distributionManagement>
 
     <properties>
