@@ -1,0 +1,36 @@
+name: CI Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Oslo
+    steps:
+      - uses: actions/checkout@v4
+
+      # nodejs is needed because the dynamic download of it via the prettier maven plugin often
+      # times out
+      # Example: https://github.com/opentripplanner/OpenTripPlanner/actions/runs/4490450225/jobs/7897533439
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+
+      - name: Run tests
+        run: |
+          sudo timedatectl set-timezone "Europe/Oslo"
+          mvn --batch-mode verify -Dprettier.nodePath=node -Dprettier.npmPath=npm
